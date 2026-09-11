@@ -438,14 +438,14 @@ func (s *Command) run() error {
 				homeDirClean = fmt.Sprintf("%s%s", userHomeDir, homeDirClean[1:])
 			}
 
-			homeDir, erro := filepath.Abs(homeDirClean)
-			if erro != nil {
+			homeDir, err := filepath.Abs(homeDirClean)
+			if err != nil {
 				return fmt.Errorf("invalid value for home directory: %v", err)
 			}
 
 			// Make sure Home Directory exists
-			if erro := os.MkdirAll(homeDir, os.ModePerm); err != nil {
-				return fmt.Errorf("could not create the home directory: %v", erro)
+			if err := os.MkdirAll(homeDir, os.ModePerm); err != nil {
+				return fmt.Errorf("could not create the home directory: %v", err)
 			}
 
 			resolvers[name], err = storageFactory.NewResolver(storage.LOCAL, &local.Config{ //nolint:forcetypeassert
