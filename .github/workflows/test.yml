@@ -44,6 +44,9 @@ jobs:
       - name: Run backend linters
         run: task --verbose lint:backend
 
+      - name: Run gohawk
+        run: go run github.com/kojah/gohawk@v0.3.0 ./...
+
       - name: Run frontend linters
         run: task --verbose lint:frontend
 

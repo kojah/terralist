@@ -173,6 +173,7 @@ func (c *DefaultMirrorController) Subscribe(apis ...*gin.RouterGroup) {
 					})
 					return
 				}
+				//gohawk:ignore deferinloop every archive must remain open until the batch upload completes
 				defer uploaded.Close()
 
 				archives = append(archives, file.NewStreamingFile(header.Filename, uploaded, header.Size))
